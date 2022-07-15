@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=r@ot123!
+      - ACCEPT_EULA=Y
+    ports:
+      - "1443:1433"
+    depends_on:
+      - migrations
+  api:
+    depends_on:
+      - mssql
+      - migrations
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=server=mssql;database=superheroesdb;User=sa;Password=r@ot123!
+      - ASPNETCORE_ENVIRONMENT=Development
+  migrations:
+    build: 
+      context: .
+      dockerfile: Migrations.Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=server=mssql;database=superheroesdb;User=sa;Password=r@ot123!
+      - ASPNETCORE_ENVIRONMENT=Development
