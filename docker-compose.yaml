@@ -7,8 +7,6 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1443:1433"
-    depends_on:
-      - migrations
   api:
     depends_on:
       - mssql
@@ -22,6 +20,8 @@ services:
       - ConnectionStrings__DefaultConnection=server=mssql;database=superheroesdb;User=sa;Password=r@ot123!
       - ASPNETCORE_ENVIRONMENT=Development
   migrations:
+    depends_on:
+      - mssql
     build: 
       context: .
       dockerfile: Migrations.Dockerfile
