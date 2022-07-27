@@ -13,8 +13,8 @@ cd .net-minimal-api
 ```bash
 .\startup.ps1 entrypoint.sh
 ```
-6. To access API open localhost:8080/swagger
-7. To stop API run the following command:
+5. To access API open localhost:8080/swagger
+6. To stop API run the following command:
 ```bash
 docker-compose down
 ```
