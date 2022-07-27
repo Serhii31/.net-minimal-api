@@ -9,13 +9,9 @@ git clone https://github.com/Serhii31/.net-minimal-api.git
 cd .net-minimal-api
 ```
 3. Install the latest versions of Docker and Docker-Compose
-4. Convert the file to use Unix-style line endings
+4. To start API execute the following command in PS:
 ```bash
-sed -i 's/\r$//' entrypoint.sh
-```
-5. To start API run the following command:
-```bash
-docker-compose up --build
+.\startup.ps1 entrypoint.sh
 ```
 6. To access API open localhost:8080/swagger
 7. To stop API run the following command:
